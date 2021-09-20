@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class UserInformation extends StatelessWidget {
-  const UserInformation({Key key}) : super(key: key);
+  const UserInformation() : super();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class UserInformation extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline3,
               ),
               Text(
-                "pawel_czerwinski",
+                "@pawel_czerwinski",
                 style: Theme.of(context).textTheme.subtitle1,
               )
             ],

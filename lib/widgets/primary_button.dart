@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {
-  const PrimaryButton({Key key, this.backgroundColor, this.child, this.onpress})
-      : super(key: key);
+  const PrimaryButton(
+      {required this.backgroundColor,
+      required this.child,
+      required this.onpress})
+      : super();
   final Color backgroundColor;
   final Widget child;
   final VoidCallback onpress;

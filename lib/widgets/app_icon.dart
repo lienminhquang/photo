@@ -6,10 +6,9 @@ class AppIconComponent extends StatelessWidget {
   final Color beginColor;
   final Color endColor;
   const AppIconComponent({
-    Key key,
-    this.beginColor,
-    this.endColor,
-  }) : super(key: key);
+    required this.beginColor,
+    required this.endColor,
+  }) : super();
 
   @override
   Widget build(BuildContext context) {

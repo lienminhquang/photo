@@ -5,7 +5,7 @@ import 'package:photo/widgets/primary_button.dart';
 import 'package:photo/widgets/user_infomation.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key key}) : super(key: key);
+  const SplashScreen() : super();
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +40,9 @@ class SplashScreen extends StatelessWidget {
                 Expanded(
                     child: PrimaryButton(
                   backgroundColor: Color(0XFFFFFFFF),
+                  onpress: () {},
                   child: Text(
-                    AppLocalizations.of(context).login,
+                    AppLocalizations.of(context)!.login,
                     style: Theme.of(context).textTheme.headline2,
                   ),
                 )),
@@ -51,11 +52,12 @@ class SplashScreen extends StatelessWidget {
                 Expanded(
                     child: PrimaryButton(
                   backgroundColor: Color(0XFF000000),
+                  onpress: () {},
                   child: Text(
-                    AppLocalizations.of(context).register,
+                    AppLocalizations.of(context)!.register,
                     style: Theme.of(context)
                         .textTheme
-                        .headline2
+                        .headline2!
                         .copyWith(color: Color(0XFFFFFFFF)),
                   ),
                 )),
