@@ -30,6 +30,9 @@ class SplashScreen extends StatelessWidget {
                         style: Theme.of(context).textTheme.headline1)),
               ],
             ))),
+            Container(
+                margin: EdgeInsets.fromLTRB(0, 0, 0, 16),
+                child: UserInformation()),
           ],
         ),
       ),
