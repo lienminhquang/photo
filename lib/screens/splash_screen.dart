@@ -33,6 +33,34 @@ class SplashScreen extends StatelessWidget {
             Container(
                 margin: EdgeInsets.fromLTRB(0, 0, 0, 16),
                 child: UserInformation()),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                    child: PrimaryButton(
+                  backgroundColor: Color(0XFFFFFFFF),
+                  child: Text(
+                    AppLocalizations.of(context).login,
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                )),
+                Container(
+                  width: 12,
+                ),
+                Expanded(
+                    child: PrimaryButton(
+                  backgroundColor: Color(0XFF000000),
+                  child: Text(
+                    AppLocalizations.of(context).register,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2
+                        .copyWith(color: Color(0XFFFFFFFF)),
+                  ),
+                )),
+              ],
+            )
           ],
         ),
       ),
