@@ -13,5 +13,8 @@
     "pleaseEnterPassword": "Vui lòng nhập mật khẩu",
     "pleaseEnterUsername": "Vui lòng nhập tài khoản",
     "passwordIsNotMatch": "Mật khẩu không khớp",
-    "registerSuccessed": "Đăng ký thành công"
+    "registerSuccessed": "Đăng ký thành công",
+    "termOfServicesAndPrivacyPolicy": "Bằng cách đăng ký, bạn đồng ý với Điều khoản dịch vụ và Chính sách quyền riêng tư của Photo.",
+    "termOfServices": "Điều khoản dịch vụ",
+    "privacyPolicy": "Chính sách quyền riêng tư"
 }

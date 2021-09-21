@@ -7,6 +7,7 @@ import 'package:photo/bloc/user_bloc.dart';
 import 'package:photo/bloc/userregister_bloc.dart';
 import 'package:photo/widgets/app_text_form_field.dart';
 import 'package:photo/widgets/primary_button.dart';
+import 'package:photo/widgets/term_of_services_and_policy.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen() : super();
@@ -44,7 +45,10 @@ class RegisterScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline1,
               ),
             ),
-            RegisterForm()
+            RegisterForm(),
+            Container(
+                margin: EdgeInsets.fromLTRB(0, 32, 0, 0),
+                child: PrivacyPolicyLinkAndTermsOfService())
           ],
         ),
       ),

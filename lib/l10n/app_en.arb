@@ -16,5 +16,8 @@
     "pleaseEnterPassword": "Please enter password",
     "pleaseEnterUsername": "Please eneter username",
     "passwordIsNotMatch": "Password is not match",
-    "registerSuccessed": "Register successed"
+    "registerSuccessed": "Register successed",
+    "termOfServicesAndPrivacyPolicy": "By signing up, you agree to Photo’s Terms of Service and Privacy Policy.",
+    "termOfServices": "Terms of Service",
+    "privacyPolicy": "Privacy Policy"
 }
