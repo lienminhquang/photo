@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:photo/bloc/login_bloc.dart';
 import 'package:photo/bloc/prev_user_bloc.dart';
 import 'package:photo/bloc/register_bloc.dart';
+import 'package:photo/routes.dart';
 import 'package:photo/widgets/app_text_form_field.dart';
 import 'package:photo/widgets/primary_button.dart';
 
@@ -96,10 +97,7 @@ class LoginForm extends StatelessWidget {
             BlocListener<LoginBloc, LoginState>(
               listener: (context, state) {
                 if (state is LoginSuccessed) {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text(
-                          AppLocalizations.of(context)!.registerSuccessed)));
-                  Navigator.of(context).pop();
+                  Navigator.popAndPushNamed(context, AppRoute.content);
                 } else if (state is LoginFailed) {
                   ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text(state.result.message)));

@@ -60,6 +60,13 @@ flutter:
     - assets/images/avar2.png
     - assets/images/avar_default.png
 
+    - assets/images/Toolbar/bell.png
+    - assets/images/Toolbar/comment.png
+    - assets/images/Toolbar/new.png
+    - assets/images/Toolbar/search.png
+    - assets/images/Toolbar/union.png
+    - assets/images/Toolbar/add.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
