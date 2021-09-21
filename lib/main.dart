@@ -5,8 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:photo/bloc/login_bloc.dart';
+import 'package:photo/bloc/photo_bloc.dart';
 import 'package:photo/bloc/prev_user_bloc.dart';
 import 'package:photo/bloc/register_bloc.dart';
+import 'package:photo/bloc/user_bloc.dart';
+import 'package:photo/models/photo_repository.dart';
 import 'package:photo/models/user_repository.dart';
 import 'package:photo/routes.dart';
 import 'package:photo/screens/content.dart';
@@ -15,6 +18,7 @@ import 'package:photo/screens/login_screen.dart';
 import 'package:photo/screens/register_screen.dart';
 import 'package:photo/screens/splash_screen.dart';
 import 'package:photo/theme.dart';
+import 'package:photo/viewmodels/photo_viewmodel.dart';
 import 'package:photo/viewmodels/user_viewmodel.dart';
 
 void main() {
@@ -23,6 +27,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final UserRepository userRepository = UserRepository();
+  final PhotoRepository photoRepository = PhotoRepository();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -60,11 +65,18 @@ class MyApp extends StatelessWidget {
           );
         },
         AppRoute.content: (context) {
-          return BlocProvider(
-            create: (context) =>
-                LoginBloc(UserViewModel(userRepository: userRepository)),
-            child: Content(),
-          );
+          return MultiBlocProvider(providers: [
+            BlocProvider(
+              create: (context) =>
+                  PhotoBloc(PhotoViewmodel(photoRepository: photoRepository))
+                    ..add(PhotoInitEvent()),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  UserBloc(UserViewModel(userRepository: userRepository))
+                    ..add(UserInitEvent()),
+            ),
+          ], child: Content());
         }
       },
     );

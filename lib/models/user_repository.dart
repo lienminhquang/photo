@@ -4,6 +4,7 @@ import 'package:photo/models/user_register_result.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UserRepository {
+  User? currentUser;
   final List<User> _users = [
     User(
         name: "Pawel Czerwinski",
@@ -23,6 +24,10 @@ class UserRepository {
     });
   }
 
+  Future<User?> getCurrentUser() {
+    return Future(() => currentUser);
+  }
+
   Future<UserRegisterResult> register(String username, String password) {
     for (var user in _users) {
       if (user.userName == username) {
@@ -36,6 +41,7 @@ class UserRepository {
   Future<LoginResult> login(String username, String password) {
     for (var user in _users) {
       if (user.userName == username) {
+        currentUser = user;
         return Future(() {
           return LoginSuccessedResult(user);
         });

@@ -19,4 +19,8 @@ class UserViewModel {
   Future<LoginResult> login(String username, String password) {
     return userRepository.login(username, password);
   }
+
+  Future<User?> getCurrentUser() {
+    return userRepository.getCurrentUser();
+  }
 }

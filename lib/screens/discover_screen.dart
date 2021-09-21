@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:photo/bloc/photo_bloc.dart';
+import 'package:photo/bloc/user_bloc.dart';
 import 'package:photo/models/user.dart';
 import 'package:photo/widgets/primary_button.dart';
 import 'package:photo/widgets/user_infomation.dart';
@@ -22,15 +25,16 @@ class DiscoverScreen extends StatelessWidget {
       } else if (index == 1) {
         return WhatIsNewToday();
       } else if (index == 2) {
-        return Container(
-          margin: EdgeInsets.symmetric(vertical: 16),
-          child: UserInformation(
-            User(
-                name: "Pawel Czerwinski",
-                tag: "@pawel_czerwinski",
-                userName: "the_jane",
-                imagePath: "assets/images/avar1.png"),
-          ),
+        return BlocBuilder<UserBloc, UserState>(
+          builder: (context, state) {
+            if (state is UserLoaded) {
+              return Container(
+                margin: EdgeInsets.symmetric(vertical: 16),
+                child: UserInformation(state.user),
+              );
+            }
+            return Container();
+          },
         );
       } else if (index == len - 1) {
         return Container(
@@ -61,8 +65,7 @@ class DiscoverScreen extends StatelessWidget {
 class WhatIsNewToday extends StatelessWidget {
   const WhatIsNewToday({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
+  Widget buildLoadedState(PhotoLoaded state, BuildContext context) {
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,11 +78,23 @@ class WhatIsNewToday extends StatelessWidget {
             ),
           ),
           Image.asset(
-            "assets/images/image1.png",
+            state.news[0].path,
             fit: BoxFit.cover,
           )
         ],
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<PhotoBloc, PhotoState>(
+      builder: (context, state) {
+        if (state is PhotoLoaded && state.news.isNotEmpty) {
+          return buildLoadedState(state, context);
+        }
+        return Container();
+      },
     );
   }
 }
@@ -87,26 +102,13 @@ class WhatIsNewToday extends StatelessWidget {
 class BrowseAll extends StatelessWidget {
   BrowseAll({Key? key}) : super(key: key);
 
-  final List<String> _images = [
-    "assets/images/image2.png",
-    "assets/images/image3.png",
-    "assets/images/image4.png",
-    "assets/images/image5.png",
-    "assets/images/image6.png",
-    "assets/images/image7.png",
-    "assets/images/image8.png",
-    "assets/images/image9.png",
-    "assets/images/image10.png",
-    "assets/images/image11.png",
-  ];
-
-  @override
-  Widget build(BuildContext context) {
+  Widget buildLoadedState(PhotoLoaded state, BuildContext context) {
+    final _images = state.photo;
     final list1 = List<Widget>.generate(_images.length ~/ 2, (index) {
       return Container(
         margin: EdgeInsets.fromLTRB(0, 0, 0, 9),
         child: Image.asset(
-          _images[index * 2],
+          _images[index * 2].path,
           fit: BoxFit.cover,
         ),
       );
@@ -115,7 +117,7 @@ class BrowseAll extends StatelessWidget {
       return Container(
         margin: EdgeInsets.fromLTRB(0, 0, 0, 9),
         child: Image.asset(
-          _images[index * 2 + 1],
+          _images[index * 2 + 1].path,
           fit: BoxFit.cover,
         ),
       );
@@ -153,5 +155,15 @@ class BrowseAll extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<PhotoBloc, PhotoState>(builder: (context, state) {
+      if (state is PhotoLoaded) {
+        return buildLoadedState(state, context);
+      }
+      return Container();
+    });
   }
 }
