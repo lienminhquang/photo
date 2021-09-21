@@ -1,5 +1,5 @@
 import 'package:photo/models/user.dart';
-import 'package:photo/models/user_login_result.dart';
+import 'package:photo/models/login_result.dart';
 import 'package:photo/models/user_register_result.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -33,14 +33,14 @@ class UserRepository {
     return Future(() => UserRegiserSuccessedResult());
   }
 
-  Future<UserLoginResult> login(String username, String password) {
+  Future<LoginResult> login(String username, String password) {
     for (var user in _users) {
       if (user.userName == username) {
         return Future(() {
-          return UserLoginSuccessedResult(user);
+          return LoginSuccessedResult(user);
         });
       }
     }
-    return Future(() => UserLoginFailedResult("Username or password is wrong"));
+    return Future(() => LoginFailedResult("Username or password is wrong"));
   }
 }
