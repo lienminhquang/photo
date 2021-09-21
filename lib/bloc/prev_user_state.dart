@@ -1,11 +1,11 @@
-part of 'user_bloc.dart';
+part of 'prev_user_bloc.dart';
 
 @immutable
-abstract class UserState {}
+abstract class PrevUserState {}
 
-class UserInitial extends UserState {}
+class PrevUserInitial extends PrevUserState {}
 
-class PrevUserLoaded implements UserState {
+class PrevUserLoaded implements PrevUserState {
   final User? user;
   PrevUserLoaded(this.user);
 

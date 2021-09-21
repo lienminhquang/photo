@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:photo/bloc/user_bloc.dart';
+import 'package:photo/bloc/prev_user_bloc.dart';
 import 'package:photo/routes.dart';
 import 'package:photo/widgets/app_icon.dart';
 import 'package:photo/widgets/primary_button.dart';
@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
   const SplashScreen() : super();
 
   Widget _buildUserInfomationWidget() {
-    return BlocBuilder<UserBloc, UserState>(
+    return BlocBuilder<PrevUserBloc, PrevUserState>(
       builder: (context, state) {
         if (state is PrevUserLoaded && state.user != null) {
           return Container(

@@ -6,19 +6,19 @@ import 'package:photo/models/user.dart';
 import 'package:photo/models/user_register_result.dart';
 import 'package:photo/viewmodels/user_viewmodel.dart';
 
-part 'user_event.dart';
-part 'user_state.dart';
+part 'prev_user_event.dart';
+part 'prev_user_state.dart';
 
-class UserBloc extends Bloc<UserEvent, UserState> {
-  UserBloc(this.userViewModel) : super(UserInitial());
+class PrevUserBloc extends Bloc<PrevUserEvent, PrevUserState> {
+  PrevUserBloc(this.userViewModel) : super(PrevUserInitial());
   final UserViewModel userViewModel;
 
   @override
-  Stream<UserState> mapEventToState(
-    UserEvent event,
+  Stream<PrevUserState> mapEventToState(
+    PrevUserEvent event,
   ) async* {
-    if (event is UserInitEvent) {
-      yield UserInitial();
+    if (event is PrevUserInitEvent) {
+      yield PrevUserInitial();
       var prevUser = await userViewModel.getPreviousLoginedUser();
       yield PrevUserLoaded(prevUser);
     }

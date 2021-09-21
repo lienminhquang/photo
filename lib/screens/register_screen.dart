@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:flutter/material.dart';
-import 'package:photo/bloc/user_bloc.dart';
-import 'package:photo/bloc/userregister_bloc.dart';
+import 'package:photo/bloc/prev_user_bloc.dart';
+import 'package:photo/bloc/register_bloc.dart';
 import 'package:photo/widgets/app_text_form_field.dart';
 import 'package:photo/widgets/primary_button.dart';
 import 'package:photo/widgets/term_of_services_and_policy.dart';
@@ -112,14 +112,14 @@ class RegisterForm extends StatelessWidget {
               ),
               margin: EdgeInsets.fromLTRB(0, 0, 0, 16),
             ),
-            BlocListener<UserregisterBloc, UserregisterState>(
+            BlocListener<RegisterBloc, RegisterState>(
               listener: (context, state) {
-                if (state is UserRegisterSuccessed) {
+                if (state is RegisterSuccessed) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text(
                           AppLocalizations.of(context)!.registerSuccessed)));
                   Navigator.of(context).pop();
-                } else if (state is UserRegisterFailed) {
+                } else if (state is RegisterFailed) {
                   ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text(state.result.message)));
                 }
@@ -135,7 +135,7 @@ class RegisterForm extends StatelessWidget {
                   ),
                   onpress: () {
                     if (_formKey.currentState!.validate()) {
-                      context.read<UserregisterBloc>().add(UserRegisteredEvent(
+                      context.read<RegisterBloc>().add(RegisteredEvent(
                           _usernameController.text, _usernameController.text));
                     }
                   }),

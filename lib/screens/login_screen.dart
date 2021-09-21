@@ -4,8 +4,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:flutter/material.dart';
 import 'package:photo/bloc/login_bloc.dart';
-import 'package:photo/bloc/user_bloc.dart';
-import 'package:photo/bloc/userregister_bloc.dart';
+import 'package:photo/bloc/prev_user_bloc.dart';
+import 'package:photo/bloc/register_bloc.dart';
 import 'package:photo/widgets/app_text_form_field.dart';
 import 'package:photo/widgets/primary_button.dart';
 
