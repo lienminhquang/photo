@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:photo/bloc/user_bloc.dart';
+import 'package:photo/routes.dart';
 import 'package:photo/widgets/app_icon.dart';
 import 'package:photo/widgets/primary_button.dart';
 import 'package:photo/widgets/user_infomation.dart';
@@ -55,7 +56,7 @@ class SplashScreen extends StatelessWidget {
                   backgroundColor: Color(0XFFFFFFFF),
                   onpress: () {},
                   child: Text(
-                    AppLocalizations.of(context)!.login,
+                    AppLocalizations.of(context)!.loginButton,
                     style: Theme.of(context).textTheme.headline2,
                   ),
                 )),
@@ -65,9 +66,11 @@ class SplashScreen extends StatelessWidget {
                 Expanded(
                     child: PrimaryButton(
                   backgroundColor: Color(0XFF000000),
-                  onpress: () {},
+                  onpress: () {
+                    Navigator.of(context).pushNamed(AppRoute.register);
+                  },
                   child: Text(
-                    AppLocalizations.of(context)!.register,
+                    AppLocalizations.of(context)!.registerButton,
                     style: Theme.of(context)
                         .textTheme
                         .headline2!

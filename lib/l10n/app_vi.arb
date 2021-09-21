@@ -1,5 +1,16 @@
 {
     "helloWorld": "Xin chào!",
-    "login": "ĐĂNG NHẬP",
-    "register": "ĐĂNG KÝ"
+    "loginButton": "ĐĂNG NHẬP",
+    "registerButton": "ĐĂNG KÝ",
+    "registerHeader": "Đăng ký",
+    "loginHeader": "Đăng nhập",
+    "discoverHeader": "Khám phá",
+    "browseAll": "Duyệt tất cả",
+    "seeMore": "XEM THÊM",
+    "whatIsNewToday": "HÔM NAY",
+    "passwordHint": "Mật khẩu",
+    "usernameHint": "Tài khoản",
+    "pleaseEnterPassword": "Vui lòng nhập mật khẩu",
+    "pleaseEnterUsername": "Vui lòng nhập tài khoản",
+    "passwordIsNotMatch": "Mật khẩu không khớp"
 }

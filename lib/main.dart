@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:photo/bloc/user_bloc.dart';
 import 'package:photo/models/user_repository.dart';
 import 'package:photo/routes.dart';
+import 'package:photo/screens/register_screen.dart';
 import 'package:photo/screens/splash_screen.dart';
 import 'package:photo/theme.dart';
 import 'package:photo/viewmodels/user_viewmodel.dart';
@@ -36,6 +37,9 @@ class MyApp extends StatelessWidget {
                   ..add(UserInitEvent());
               },
               child: SplashScreen());
+        },
+        AppRoute.register: (context) {
+          return RegisterScreen();
         }
       },
     );

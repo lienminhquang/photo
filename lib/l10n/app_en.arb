@@ -3,6 +3,17 @@
     "@helloWorld": {
       "description": "The conventional newborn programmer greeting"
     },
-    "login": "LOG IN",
-    "register": "REGISTER"
+    "loginButton": "LOG IN",
+    "registerButton": "REGISTER",
+    "registerHeader": "Register",
+    "loginHeader": "Log in",
+    "discoverHeader": "Discover",
+    "browseAll": "BROWSE ALL",
+    "seeMore": "SEE MORE",
+    "whatIsNewToday": "WHAT'S NEW TODAY",
+    "passwordHint": "Password",
+    "usernameHint": "Username",
+    "pleaseEnterPassword": "Please enter password",
+    "pleaseEnterUsername": "Please eneter username",
+    "passwordIsNotMatch": "Password is not match"
 }
