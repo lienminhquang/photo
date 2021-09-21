@@ -55,7 +55,9 @@ class SplashScreen extends StatelessWidget {
                 Expanded(
                     child: PrimaryButton(
                   backgroundColor: Color(0XFFFFFFFF),
-                  onpress: () {},
+                  onpress: () {
+                    Navigator.of(context).pushNamed(AppRoute.login);
+                  },
                   child: Text(
                     AppLocalizations.of(context)!.loginButton,
                     style: Theme.of(context).textTheme.headline2,

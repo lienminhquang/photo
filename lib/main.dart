@@ -8,6 +8,7 @@ import 'package:photo/bloc/user_bloc.dart';
 import 'package:photo/bloc/userregister_bloc.dart';
 import 'package:photo/models/user_repository.dart';
 import 'package:photo/routes.dart';
+import 'package:photo/screens/login_screen.dart';
 import 'package:photo/screens/register_screen.dart';
 import 'package:photo/screens/splash_screen.dart';
 import 'package:photo/theme.dart';
@@ -45,6 +46,13 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 UserregisterBloc(UserViewModel(userRepository: userRepository)),
             child: RegisterScreen(),
+          );
+        },
+        AppRoute.login: (context) {
+          return BlocProvider(
+            create: (context) =>
+                UserregisterBloc(UserViewModel(userRepository: userRepository)),
+            child: LoginScreen(),
           );
         }
       },
