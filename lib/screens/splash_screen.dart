@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:photo/bloc/user_bloc.dart';
 import 'package:photo/widgets/app_icon.dart';
 import 'package:photo/widgets/primary_button.dart';
 import 'package:photo/widgets/user_infomation.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen() : super();
+
+  Widget _buildUserInfomationWidget() {
+    return BlocBuilder<UserBloc, UserState>(
+      builder: (context, state) {
+        if (state is PrevUserLoaded && state.user != null) {
+          return Container(
+              margin: EdgeInsets.fromLTRB(0, 0, 0, 16),
+              child: UserInformation(state.user!));
+        }
+        return Container();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +45,7 @@ class SplashScreen extends StatelessWidget {
                         style: Theme.of(context).textTheme.headline1)),
               ],
             ))),
-            Container(
-                margin: EdgeInsets.fromLTRB(0, 0, 0, 16),
-                child: UserInformation()),
+            _buildUserInfomationWidget(),
             Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
