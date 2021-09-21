@@ -97,7 +97,8 @@ class LoginForm extends StatelessWidget {
             BlocListener<LoginBloc, LoginState>(
               listener: (context, state) {
                 if (state is LoginSuccessed) {
-                  Navigator.popAndPushNamed(context, AppRoute.content);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, AppRoute.content, (route) => false);
                 } else if (state is LoginFailed) {
                   ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text(state.result.message)));

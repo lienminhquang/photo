@@ -19,14 +19,19 @@ class _ContentState extends State<Content> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _child[_selectedIndex],
-      bottomNavigationBar: AppBottomNavBar(
-        onTab: (index) {
-          setState(() {
-            if (index != 2) _selectedIndex = index > 2 ? index - 1 : index;
-          });
-        },
+    return WillPopScope(
+      onWillPop: () {
+        return Future(() => false);
+      },
+      child: Scaffold(
+        body: _child[_selectedIndex],
+        bottomNavigationBar: AppBottomNavBar(
+          onTab: (index) {
+            setState(() {
+              if (index != 2) _selectedIndex = index > 2 ? index - 1 : index;
+            });
+          },
+        ),
       ),
     );
   }
