@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:photo/models/user.dart';
+import 'package:photo/models/user_register_result.dart';
 import 'package:photo/viewmodels/user_viewmodel.dart';
 
 part 'user_event.dart';

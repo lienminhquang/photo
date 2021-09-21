@@ -1,7 +1,10 @@
 import 'dart:math';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:flutter/material.dart';
+import 'package:photo/bloc/user_bloc.dart';
+import 'package:photo/bloc/userregister_bloc.dart';
 import 'package:photo/widgets/app_text_form_field.dart';
 import 'package:photo/widgets/primary_button.dart';
 
@@ -95,7 +98,7 @@ class RegisterForm extends StatelessWidget {
                   if (value == null || value.isEmpty) {
                     return AppLocalizations.of(context)!.pleaseEnterPassword;
                   }
-                  if (_passwordController.value.text != value) {
+                  if (_passwordController.text != value) {
                     return AppLocalizations.of(context)!.passwordIsNotMatch;
                   }
                   return null;
@@ -105,18 +108,34 @@ class RegisterForm extends StatelessWidget {
               ),
               margin: EdgeInsets.fromLTRB(0, 0, 0, 16),
             ),
-            PrimaryButton(
-                backgroundColor: Color(0XFF000000),
-                child: Text(
-                  AppLocalizations.of(context)!.registerButton,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline2!
-                      .copyWith(color: Color(0XFFFFFFFF)),
-                ),
-                onpress: () {
-                  if (_formKey.currentState!.validate()) {}
-                })
+            BlocListener<UserregisterBloc, UserregisterState>(
+              listener: (context, state) {
+                if (state is UserRegisterSuccessed) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                          AppLocalizations.of(context)!.registerSuccessed)));
+                  Navigator.of(context).pop();
+                } else if (state is UserRegisterFailed) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(state.result.message)));
+                }
+              },
+              child: PrimaryButton(
+                  backgroundColor: Color(0XFF000000),
+                  child: Text(
+                    AppLocalizations.of(context)!.registerButton,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2!
+                        .copyWith(color: Color(0XFFFFFFFF)),
+                  ),
+                  onpress: () {
+                    if (_formKey.currentState!.validate()) {
+                      context.read<UserregisterBloc>().add(UserRegisteredEvent(
+                          _usernameController.text, _usernameController.text));
+                    }
+                  }),
+            )
           ],
         ),
       ),

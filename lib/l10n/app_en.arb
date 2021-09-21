@@ -15,5 +15,6 @@
     "usernameHint": "Username",
     "pleaseEnterPassword": "Please enter password",
     "pleaseEnterUsername": "Please eneter username",
-    "passwordIsNotMatch": "Password is not match"
+    "passwordIsNotMatch": "Password is not match",
+    "registerSuccessed": "Register successed"
 }

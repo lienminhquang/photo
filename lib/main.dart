@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:photo/bloc/user_bloc.dart';
+import 'package:photo/bloc/userregister_bloc.dart';
 import 'package:photo/models/user_repository.dart';
 import 'package:photo/routes.dart';
 import 'package:photo/screens/register_screen.dart';
@@ -17,6 +18,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final UserRepository userRepository = UserRepository();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,13 +35,17 @@ class MyApp extends StatelessWidget {
         AppRoute.splash: (context) {
           return BlocProvider<UserBloc>(
               create: (BuildContext context) {
-                return UserBloc(UserViewModel(userRepository: UserRepository()))
+                return UserBloc(UserViewModel(userRepository: userRepository))
                   ..add(UserInitEvent());
               },
               child: SplashScreen());
         },
         AppRoute.register: (context) {
-          return RegisterScreen();
+          return BlocProvider(
+            create: (context) =>
+                UserregisterBloc(UserViewModel(userRepository: userRepository)),
+            child: RegisterScreen(),
+          );
         }
       },
     );

@@ -12,5 +12,6 @@
     "usernameHint": "Tài khoản",
     "pleaseEnterPassword": "Vui lòng nhập mật khẩu",
     "pleaseEnterUsername": "Vui lòng nhập tài khoản",
-    "passwordIsNotMatch": "Mật khẩu không khớp"
+    "passwordIsNotMatch": "Mật khẩu không khớp",
+    "registerSuccessed": "Đăng ký thành công"
 }

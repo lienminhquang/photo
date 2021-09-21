@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:photo/constants.dart';
 import 'package:photo/models/user.dart';
 
 class UserInformation extends StatelessWidget {
@@ -16,7 +17,9 @@ class UserInformation extends StatelessWidget {
             margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(45),
-              child: Image.asset(user.imagePath),
+              child: Image.asset(user.imagePath == null
+                  ? Constants.defaultImagePath
+                  : user.imagePath!),
             ),
           ),
           Column(
