@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:photo/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:photo/bloc/prev_user_bloc.dart';
 import 'package:photo/routes.dart';
 import 'package:photo/widgets/app_icon.dart';
