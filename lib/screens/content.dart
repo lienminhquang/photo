@@ -13,10 +13,10 @@ class Content extends StatefulWidget {
 class _ContentState extends State<Content> {
   int _selectedIndex = 0;
   List<Widget> _child = [
-    TestChangeThemeScreen(),
     DiscoverScreen(),
     DiscoverScreen(),
     DiscoverScreen(),
+    TestChangeThemeScreen()
   ];
   @override
   Widget build(BuildContext context) {

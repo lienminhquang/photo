@@ -7,6 +7,7 @@ import 'package:photo/bloc/login_bloc.dart';
 import 'package:photo/bloc/prev_user_bloc.dart';
 import 'package:photo/bloc/register_bloc.dart';
 import 'package:photo/routes.dart';
+import 'package:photo/theme.dart';
 import 'package:photo/widgets/app_text_form_field.dart';
 import 'package:photo/widgets/primary_button.dart';
 
@@ -105,13 +106,13 @@ class LoginForm extends StatelessWidget {
                 }
               },
               child: PrimaryButton(
-                  backgroundColor: Color(0XFF000000),
+                  backgroundColor: AppTheme.blackColor,
                   child: Text(
                     AppLocalizations.of(context)!.loginButton,
                     style: Theme.of(context)
                         .textTheme
                         .headline2!
-                        .copyWith(color: Color(0XFFFFFFFF)),
+                        .copyWith(color: AppTheme.whilteColor),
                   ),
                   onpress: () {
                     if (_formKey.currentState!.validate()) {

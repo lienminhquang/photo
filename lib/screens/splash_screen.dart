@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:photo/bloc/prev_user_bloc.dart';
 import 'package:photo/routes.dart';
+import 'package:photo/theme.dart';
 import 'package:photo/widgets/app_icon.dart';
 import 'package:photo/widgets/primary_button.dart';
 import 'package:photo/widgets/user_infomation.dart';
@@ -54,13 +55,16 @@ class SplashScreen extends StatelessWidget {
               children: [
                 Expanded(
                     child: PrimaryButton(
-                  backgroundColor: Color(0XFFFFFFFF),
+                  backgroundColor: AppTheme.whilteColor,
                   onpress: () {
                     Navigator.of(context).pushNamed(AppRoute.login);
                   },
                   child: Text(
                     AppLocalizations.of(context)!.loginButton,
-                    style: Theme.of(context).textTheme.headline2,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2!
+                        .copyWith(color: AppTheme.blackColor),
                   ),
                 )),
                 Container(
@@ -68,7 +72,7 @@ class SplashScreen extends StatelessWidget {
                 ),
                 Expanded(
                     child: PrimaryButton(
-                  backgroundColor: Color(0XFF000000),
+                  backgroundColor: AppTheme.blackColor,
                   onpress: () {
                     Navigator.of(context).pushNamed(AppRoute.register);
                   },
@@ -77,7 +81,7 @@ class SplashScreen extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .headline2!
-                        .copyWith(color: Color(0XFFFFFFFF)),
+                        .copyWith(color: AppTheme.whilteColor),
                   ),
                 )),
               ],

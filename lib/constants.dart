@@ -1,3 +1,3 @@
 class Constants {
-  static final String defaultImagePath = "assets/images/default_avar.png";
+  static final String defaultImagePath = "assets/images/avar_default.png";
 }

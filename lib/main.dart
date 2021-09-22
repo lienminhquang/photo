@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ThemeBloc(ThemeInitial(AppTheme.getSystemTheme())),
+      create: (context) => ThemeBloc(ThemeInitial(AppTheme.lightTheme)),
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
           return MaterialApp(

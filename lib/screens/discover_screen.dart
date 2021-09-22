@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:photo/bloc/photo_bloc.dart';
 import 'package:photo/bloc/user_bloc.dart';
 import 'package:photo/models/user.dart';
+import 'package:photo/theme.dart';
 import 'package:photo/widgets/primary_button.dart';
 import 'package:photo/widgets/user_infomation.dart';
 
@@ -40,10 +41,13 @@ class DiscoverScreen extends StatelessWidget {
         return Container(
           margin: EdgeInsets.fromLTRB(0, 23, 0, 32),
           child: PrimaryButton(
-              backgroundColor: Color(0XFFFFFFFF),
+              backgroundColor: AppTheme.whilteColor,
               child: Text(
                 AppLocalizations.of(context)!.seeMore,
-                style: Theme.of(context).textTheme.headline2,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline2!
+                    .copyWith(color: AppTheme.blackColor),
               ),
               onpress: () {}),
         );
@@ -113,16 +117,16 @@ class BrowseAll extends StatelessWidget {
         ),
       );
     });
-    final list2 = List<Widget>.generate(_images.length ~/ 2, (index) {
-      return Container(
+    final List<Widget> list2 = [];
+    for (int i = 1; i < _images.length; i += 2) {
+      list2.add(Container(
         margin: EdgeInsets.fromLTRB(0, 0, 0, 9),
         child: Image.asset(
-          _images[index * 2 + 1].path,
+          _images[i].path,
           fit: BoxFit.cover,
         ),
-      );
-    });
-
+      ));
+    }
     return Container(
       margin: EdgeInsets.fromLTRB(0, 32, 0, 0),
       child: Column(

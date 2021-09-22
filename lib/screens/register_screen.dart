@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:photo/bloc/prev_user_bloc.dart';
 import 'package:photo/bloc/register_bloc.dart';
+import 'package:photo/theme.dart';
 import 'package:photo/widgets/app_text_form_field.dart';
 import 'package:photo/widgets/primary_button.dart';
 import 'package:photo/widgets/term_of_services_and_policy.dart';
@@ -125,14 +126,12 @@ class RegisterForm extends StatelessWidget {
                 }
               },
               child: PrimaryButton(
-                  backgroundColor: Color(0XFF000000),
-                  child: Text(
-                    AppLocalizations.of(context)!.registerButton,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline2!
-                        .copyWith(color: Color(0XFFFFFFFF)),
-                  ),
+                  backgroundColor: AppTheme.blackColor,
+                  child: Text(AppLocalizations.of(context)!.registerButton,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline2!
+                          .copyWith(color: AppTheme.whilteColor)),
                   onpress: () {
                     if (_formKey.currentState!.validate()) {
                       context.read<RegisterBloc>().add(RegisteredEvent(
