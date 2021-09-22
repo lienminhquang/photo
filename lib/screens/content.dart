@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:photo/screens/discover_screen.dart';
+import 'package:photo/screens/test_change_theme_screen.dart';
 import 'package:photo/widgets/app_bottom_nav_bar.dart';
 
 class Content extends StatefulWidget {
@@ -12,7 +13,7 @@ class Content extends StatefulWidget {
 class _ContentState extends State<Content> {
   int _selectedIndex = 0;
   List<Widget> _child = [
-    DiscoverScreen(),
+    TestChangeThemeScreen(),
     DiscoverScreen(),
     DiscoverScreen(),
     DiscoverScreen(),

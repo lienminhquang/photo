@@ -25,7 +25,7 @@ class UserRepository {
   }
 
   Future<User?> getCurrentUser() {
-    return Future(() => currentUser);
+    return Future(() => currentUser == null ? _users[0] : currentUser);
   }
 
   Future<UserRegisterResult> register(String username, String password) {

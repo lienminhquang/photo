@@ -6,6 +6,7 @@ import 'package:photo/bloc/login_bloc.dart';
 import 'package:photo/bloc/photo_bloc.dart';
 import 'package:photo/bloc/prev_user_bloc.dart';
 import 'package:photo/bloc/register_bloc.dart';
+import 'package:photo/bloc/theme_bloc.dart';
 import 'package:photo/bloc/user_bloc.dart';
 import 'package:photo/models/photo_repository.dart';
 import 'package:photo/models/user_repository.dart';
@@ -24,58 +25,68 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final UserRepository userRepository = UserRepository();
+
   final PhotoRepository photoRepository = PhotoRepository();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Photo',
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: [Locale('en'), Locale('vi')],
-      theme: appTheme,
-      routes: {
-        AppRoute.splash: (context) {
-          return BlocProvider<PrevUserBloc>(
-              create: (BuildContext context) {
-                return PrevUserBloc(
-                    UserViewModel(userRepository: userRepository))
-                  ..add(PrevUserInitEvent());
+    return BlocProvider(
+      create: (context) => ThemeBloc(ThemeInitial(AppTheme.getSystemTheme())),
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Photo',
+            localizationsDelegates: [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: [Locale('en'), Locale('vi')],
+            theme:
+                state is ThemeInitial ? state.theme : AppTheme.getSystemTheme(),
+            routes: {
+              AppRoute.splash: (context) {
+                return BlocProvider<PrevUserBloc>(
+                    create: (BuildContext context) {
+                      return PrevUserBloc(
+                          UserViewModel(userRepository: userRepository))
+                        ..add(PrevUserInitEvent());
+                    },
+                    child: SplashScreen());
               },
-              child: SplashScreen());
-        },
-        AppRoute.register: (context) {
-          return BlocProvider(
-            create: (context) =>
-                RegisterBloc(UserViewModel(userRepository: userRepository)),
-            child: RegisterScreen(),
+              AppRoute.register: (context) {
+                return BlocProvider(
+                  create: (context) => RegisterBloc(
+                      UserViewModel(userRepository: userRepository)),
+                  child: RegisterScreen(),
+                );
+              },
+              AppRoute.login: (context) {
+                return BlocProvider(
+                  create: (context) =>
+                      LoginBloc(UserViewModel(userRepository: userRepository)),
+                  child: LoginScreen(),
+                );
+              },
+              AppRoute.content: (context) {
+                return MultiBlocProvider(providers: [
+                  BlocProvider(
+                    create: (context) => PhotoBloc(
+                        PhotoViewmodel(photoRepository: photoRepository))
+                      ..add(PhotoInitEvent()),
+                  ),
+                  BlocProvider(
+                    create: (context) =>
+                        UserBloc(UserViewModel(userRepository: userRepository))
+                          ..add(UserInitEvent()),
+                  ),
+                ], child: Content());
+              }
+            },
           );
         },
-        AppRoute.login: (context) {
-          return BlocProvider(
-            create: (context) =>
-                LoginBloc(UserViewModel(userRepository: userRepository)),
-            child: LoginScreen(),
-          );
-        },
-        AppRoute.content: (context) {
-          return MultiBlocProvider(providers: [
-            BlocProvider(
-              create: (context) =>
-                  PhotoBloc(PhotoViewmodel(photoRepository: photoRepository))
-                    ..add(PhotoInitEvent()),
-            ),
-            BlocProvider(
-              create: (context) =>
-                  UserBloc(UserViewModel(userRepository: userRepository))
-                    ..add(UserInitEvent()),
-            ),
-          ], child: Content());
-        }
-      },
+      ),
     );
   }
 }
